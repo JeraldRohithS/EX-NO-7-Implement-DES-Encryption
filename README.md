@@ -12,11 +12,38 @@ To use the Data Encryption Standard (DES) algorithm for a practical application,
 4. DES applies initial and final permutations along with 16 rounds of substitution and permutation transformations to produce ciphertext.
 
 ## Program:
+```
+from Crypto.Cipher import DES
+from Crypto.Util.Padding import pad, unpad
 
+# DES key must be 8 bytes long
+key = b'12345678'
+
+# Create DES cipher
+cipher = DES.new(key, DES.MODE_ECB)
+
+# Plaintext
+plaintext = input("Enter the plaintext: ")
+
+# Encrypt
+padded_text = pad(plaintext.encode(), DES.block_size)
+ciphertext = cipher.encrypt(padded_text)
+
+print("Encrypted Text (Hex):", ciphertext.hex())
+
+# Decrypt
+decipher = DES.new(key, DES.MODE_ECB)
+decrypted_text = unpad(decipher.decrypt(ciphertext), DES.block_size)
+
+print("Decrypted Text:", decrypted_text.decode())
+
+```
 
 
 
 ## Output:
+
+<img width="523" height="151" alt="image" src="https://github.com/user-attachments/assets/aa84deb2-40ed-459e-bab6-3e0ba659f84a" />
 
 
 ## Result:
